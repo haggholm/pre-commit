@@ -37,6 +37,12 @@ elif [[ -x "$LOCAL" ]]; then
   BINARY="$LOCAL"
 fi
 
+if [[ -f ".pnp.js" ]]; then
+  NODE_OPTIONS="${NODE_OPTIONS} --require=.pnp.js"
+else
+  NODE_OPTIONS="${NODE_OPTIONS}"
+fi
+
 #
 # Add --dry-run cli flag support so we can execute this hook without side effects
 # and see if it works in the current environment
@@ -46,5 +52,5 @@ if [[ $* == *--dry-run* ]]; then
     exit 1
   fi
 else
-  "$BINARY" "$("$BINARY" -e "console.log(require.resolve('@haggholm/pre-commit'))")"
+  "NODE_OPTIONS=${NODE_OPTIONS}" "$BINARY" "$("$BINARY" -e "console.log(require.resolve('@haggholm/pre-commit'))")"
 fi
