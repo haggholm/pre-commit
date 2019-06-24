@@ -38,7 +38,7 @@ elif [[ -x "$LOCAL" ]]; then
 fi
 
 if [[ -f './.pnp.js' ]]; then
-  NODE_OPTIONS="${NODE_OPTIONS} --require='./.pnp.js'"
+  NODE_OPTIONS="${NODE_OPTIONS} --require=./.pnp.js"
 else
   NODE_OPTIONS="${NODE_OPTIONS}"
 fi
